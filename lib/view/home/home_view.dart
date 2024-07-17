@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:trackizer/common/color_extension.dart';
 
 import '../../common_widget/custom_arc_painter.dart';
@@ -19,33 +21,29 @@ class HomeView extends StatefulWidget {
 class _HomeViewState extends State<HomeView> {
   bool isSubscription = true;
   List subArr = [
-    {"name": "Spotify", "icon": "assets/img/spotify_logo.png", "price": "5.99"},
     {
-      "name": "YouTube Premium",
-      "icon": "assets/img/youtube_logo.png",
-      "price": "18.99"
+      "name": "Hostel Fee",
+      "icon": "assets/img/hostel.png",
+      "price": "10000"
     },
+    {"name": "Mess Fee", "icon": "assets/img/fast-food.png", "price": "3000"},
     {
-      "name": "Microsoft OneDrive",
-      "icon": "assets/img/onedrive_logo.png",
-      "price": "29.99"
+      "name": "Electricity Bill",
+      "icon": "assets/img/electrical.png",
+      "price": "500"
     },
-    {"name": "NetFlix", "icon": "assets/img/netflix_logo.png", "price": "15.00"}
+    {"name": "Others", "icon": "assets/img/other.png", "price": "1500"}
   ];
 
   List bilArr = [
-    {"name": "Spotify", "date": DateTime(2023, 07, 25), "price": "5.99"},
+    {"name": "Hostel Fee", "date": DateTime(2023, 07, 25), "price": "10000"},
+    {"name": "Mess Fee", "date": DateTime(2023, 07, 25), "price": "3000"},
     {
-      "name": "YouTube Premium",
+      "name": "Electricity Bill",
       "date": DateTime(2023, 07, 25),
-      "price": "18.99"
+      "price": "500"
     },
-    {
-      "name": "Microsoft OneDrive",
-      "date": DateTime(2023, 07, 25),
-      "price": "29.99"
-    },
-    {"name": "NetFlix", "date": DateTime(2023, 07, 25), "price": "15.00"}
+    {"name": "Others", "date": DateTime(2023, 07, 25), "price": "1500"}
   ];
 
   @override
@@ -71,14 +69,15 @@ class _HomeViewState extends State<HomeView> {
                     alignment: Alignment.topCenter,
                     children: [
                       Container(
-                        padding:  EdgeInsets.only(bottom: media.width * 0.05),
+                        padding: EdgeInsets.only(bottom: media.width * 0.05),
                         width: media.width * 0.72,
                         height: media.width * 0.72,
                         child: CustomPaint(
-                          painter: CustomArcPainter(end: 220, ),
+                          painter: CustomArcPainter(
+                            end: 220,
+                          ),
                         ),
                       ),
-
                       Padding(
                         padding: const EdgeInsets.only(right: 10),
                         child: Row(
@@ -109,11 +108,11 @@ class _HomeViewState extends State<HomeView> {
                       ),
                       Image.asset("assets/img/app_logo.png",
                           width: media.width * 0.25, fit: BoxFit.contain),
-                       SizedBox(
+                      SizedBox(
                         height: media.width * 0.07,
                       ),
                       Text(
-                        "\$1,235",
+                        "₹15,000",
                         style: TextStyle(
                             color: TColor.white,
                             fontSize: 40,
@@ -163,34 +162,28 @@ class _HomeViewState extends State<HomeView> {
                           children: [
                             Expanded(
                               child: StatusButton(
-                                title: "Active subs",
-                                value: "12",
+                                title: "Total Fees",
+                                value: "₹15,000",
                                 statusColor: TColor.secondary,
                                 onPressed: () {},
                               ),
                             ),
-                            const SizedBox(
-                              width: 8,
-                            ),
                             Expanded(
                               child: StatusButton(
-                                title: "Highest subs",
-                                value: "\$19.99",
+                                title: "Highest Fee",
+                                value: "₹10,000",
                                 statusColor: TColor.primary10,
                                 onPressed: () {},
                               ),
                             ),
-                            const SizedBox(
-                              width: 8,
-                            ),
                             Expanded(
                               child: StatusButton(
-                                title: "Lowest subs",
-                                value: "\$5.99",
+                                title: "Lowest Fee",
+                                value: "₹500",
                                 statusColor: TColor.secondaryG,
                                 onPressed: () {},
                               ),
-                            )
+                            ),
                           ],
                         ),
                       ],
@@ -245,8 +238,11 @@ class _HomeViewState extends State<HomeView> {
                     return SubScriptionHomeRow(
                       sObj: sObj,
                       onPressed: () {
-
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => SubscriptionInfoView( sObj: sObj ) ));
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    SubscriptionInfoView(sObj: sObj)));
                       },
                     );
                   }),
